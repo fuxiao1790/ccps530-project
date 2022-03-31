@@ -72,7 +72,7 @@ const RenderLoginMainContent = () => `
         <div class="input-group-prepend">
             <span class="input-group-text" id="inputGroup-sizing-sm-login-password">Password</span>
         </div>
-        <input id="input-login-password" type="text" class="form-control" aria-label="Small"
+        <input type="password" id="input-login-password" class="form-control" aria-label="Small"
             aria-describedby="inputGroup-sizing-sm-login-password">
     </div>
 
@@ -92,7 +92,7 @@ const RenderRegisterMainContent = () => `
         <div class="input-group-prepend">
             <span class="input-group-text" id="inputGroup-sizing-sm-register-password">Password</span>
         </div>
-        <input id="input-register-password" type="text" class="form-control" aria-label="Small"aria-describedby="inputGroup-sizing-sm-register-password">
+        <input type="password" id="input-register-password" class="form-control" aria-label="Small"aria-describedby="inputGroup-sizing-sm-register-password">
     </div>
 
     <button class="btn btn-primary" onclick="OnClickRegister()">Register</button>
@@ -153,14 +153,69 @@ const RenderMap = () => {
 }
 
 const RenderLookupResult = () => {
+    $("#lookup-result").empty()
+
     if (!state.displayMap) {
         return
     }
 
-    $("#lookup-result").empty()
-
     const lookupResult = `
-
+        <tr class="border">
+            <th width="30%" class="text-center bg-primary text-white p-2">IP Address</th>
+            <td height="70%" class="p-2">${state.lookupResult.ip_address}</td>
+        </tr>
+        <tr class="border">
+            <th width="30%" class="text-center bg-primary text-white p-2">Country</th>
+            <td height="70%" class="p-2">${state.lookupResult.country}</td>
+        </tr>
+        <tr class="border">
+            <th width="30%" class="text-center bg-primary text-white p-2">Country Code</th>
+            <td height="70%" class="p-2">${state.lookupResult.country_code}</td>
+        </tr>
+        <tr class="border">
+            <th width="30%" class="text-center bg-primary text-white p-2">Continent</th>
+            <td height="70%" class="p-2">${state.lookupResult.continent}</td>
+        </tr>
+        <tr class="border">
+            <th width="30%" class="text-center bg-primary text-white p-2">Continent Code</th>
+            <td height="70%" class="p-2">${state.lookupResult.continent_code}</td>
+        </tr>
+        <tr class="border">
+            <th width="30%" class="text-center bg-primary text-white p-2">City</th>
+            <td height="70%" class="p-2">${state.lookupResult.city}</td>
+        </tr>
+        <tr class="border">
+            <th width="30%" class="text-center bg-primary text-white p-2">County</th>
+            <td height="70%" class="p-2">${state.lookupResult.county}</td>
+        </tr>
+        <tr class="border">
+            <th width="30%" class="text-center bg-primary text-white p-2">Region</th>
+            <td height="70%" class="p-2">${state.lookupResult.region}</td>
+        </tr>
+        <tr class="border">
+            <th width="30%" class="text-center bg-primary text-white p-2">Region Code</th>
+            <td height="70%" class="p-2">${state.lookupResult.region_code}</td>
+        </tr>
+        <tr class="border">
+            <th width="30%" class="text-center bg-primary text-white p-2">Postal Code</th>
+            <td height="70%" class="p-2">${state.lookupResult.postal_code}</td>
+        </tr>
+        <tr class="border">
+            <th width="30%" class="text-center bg-primary text-white p-2">Timezone</th>
+            <td height="70%" class="p-2">${state.lookupResult.timezone}</td>
+        </tr>
+        <tr class="border">
+            <th width="30%" class="text-center bg-primary text-white p-2">Owner</th>
+            <td height="70%" class="p-2">${state.lookupResult.owner}</td>
+        </tr>
+        <tr class="border">
+            <th width="30%" class="text-center bg-primary text-white p-2">Longitude</th>
+            <td height="70%" class="p-2">${state.lookupResult.longitude}</td>
+        </tr>
+        <tr class="border">
+            <th width="30%" class="text-center bg-primary text-white p-2">Latitude</th>
+            <td height="70%" class="p-2">${state.lookupResult.latitude}</td>
+        </tr>
     `
 
     $("#lookup-result").append(lookupResult)
@@ -298,7 +353,6 @@ const OnClickRegister = () => {
 }
 
 const OnClickLookup  = () => {
-    console.log("OnClickLookup")
     const ip = $("#input-main-ip").val()
 
     Lookup(ip, state.token)

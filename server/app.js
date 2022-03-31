@@ -145,11 +145,11 @@ const RegisterHandler = (req, res) => {
 
     AddNewUser(req.body.username, hash)
 
-    const token = CreateSignedJwtWihtUsername(user_data.username)
+    const token = CreateSignedJwtWihtUsername(req.body.username)
     res.status(200)
     res.json({
         token: token,
-        username: user_data.username,
+        username: req.body.username,
     })
 }
 
